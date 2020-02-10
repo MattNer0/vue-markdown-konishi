@@ -7,6 +7,7 @@ import mark from 'markdown-it-mark'
 import katex from '@iktakahiro/markdown-it-katex'
 import container from 'markdown-it-container'
 import tasklists from 'markdown-it-task-lists'
+import attrs from 'markdown-it-attrs'
 import markdownItSourceMap from 'markdown-it-source-map'
 
 export default {
@@ -111,6 +112,12 @@ export default {
       .use(mark)
       .use(katex, { "throwOnError": false, "errorColor": " #cc0000" })
       .use(tasklists, { enabled: this.taskLists })
+
+    this.md.use(attrs, {
+      leftDelimiter: '{',
+      rightDelimiter: '}',
+      allowedAttributes: []
+    })
 
     if (this.emoji) {
       this.md.use(emoji)
